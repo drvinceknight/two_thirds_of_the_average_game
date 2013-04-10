@@ -43,7 +43,7 @@ def analyse_given_data_set(data, file_name):
     plt.xlabel("Guess")
     plt.ylabel("Probability")
     max_y = plt.ylim()[1]
-    plt.vlines(winning_first_guess, 0, max_y, label='Winning first Guess: %s' % winning_first_guess, color='blue')
+    plt.vlines(winning_first_guess, 0, max_y, label='Winning First Guess: %s' % winning_first_guess, color='blue')
     plt.vlines(winning_second_guess, 0, max_y, label='Winning Second Guess: %s' % winning_second_guess, color='green')
     plt.ylim(0, max_y)
     plt.xlim(0, 100)
