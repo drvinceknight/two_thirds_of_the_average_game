@@ -32,8 +32,8 @@ def analyse_given_data_set(data, file_name):
     second_guess_distance = [abs(e[1] - 2 * second_guess_mean / 3)for e in data]
     winning_first_guess = data[first_guess_distance.index(min(first_guess_distance))][1]
     winning_second_guess = data[second_guess_distance.index(min(second_guess_distance))][1]
-    print "Winning first guess: %s" % winning_first_guess
-    print "Winning second guess: %s" % winning_second_guess
+    print "Winning first guess: %i" % winning_first_guess
+    print "Winning second guess: %i" % winning_second_guess
 
     # Plot histograms of guesses using matplotlib
     plt.figure()
@@ -71,5 +71,5 @@ if os.path.isdir(arguments[1]):
         analyse_given_data_set(data, file_name)
 else:
     file_name = arguments[1][arguments[1].rindex("/") + 1: arguments[1].index(".csv")]
-    data = read_csv_file(arguments[1], file_name)
-    analyse_given_data_set(data)
+    data = read_csv_file(arguments[1])
+    analyse_given_data_set(data, file_name)
