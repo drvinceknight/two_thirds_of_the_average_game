@@ -9,5 +9,5 @@ handlers:
   script: twothirdsgame.app
 
 libraries:
-- name: jinja
+- name: jinja2
   version: latest
