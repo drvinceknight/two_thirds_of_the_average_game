@@ -9,5 +9,5 @@ handlers:
   script: twothirdsgame.app
 
 libraries:
-- name: django
+- name: jinja
   version: latest
