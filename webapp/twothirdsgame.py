@@ -28,7 +28,7 @@ LOGGED_IN_PAGE_HTML = """\
     <form action="/guess" method="post">
         Guess: <input name="guess"><br>
         Name: <input name="name" value="Anonymous"><br>
-        url: <input name="personel_url"><br>
+        url: <input name="personal_url"><br>
         <input type="submit" value="Submit form">
     </form>
     <a href=%s>%s</a>
@@ -50,7 +50,7 @@ class Guess(db.Model):
     author = db.StringProperty()
     name = db.StringProperty()
     number = db.StringProperty()
-    personel_url = db.StringProperty()
+    personal_url = db.StringProperty()
     date = db.DateTimeProperty(auto_now_add=True)
 
 
@@ -92,7 +92,7 @@ class Guessed(webapp2.RequestHandler):
 
         name = self.request.get('name')
         number = self.request.get('guess')
-        personel_url = self.request.get('personel_url')
+        personal_url = self.request.get('personal_url')
 
         if is_valid_guess(number):
 
@@ -100,7 +100,7 @@ class Guessed(webapp2.RequestHandler):
             guess.author = users.get_current_user().nickname()
             guess.name = name
             guess.number = number
-            guess.personel_url = personel_url
+            guess.personal_url = personal_url
             guess.put()
 
             Q = Guess.all()
@@ -129,7 +129,7 @@ class Guessed(webapp2.RequestHandler):
         else:
             self.response.write("I'm sorry ")
             self.response.write(cgi.escape(self.request.get('name')))
-            self.response.write("but you guessed '%s' which is not a valid guess (Reel number between 0 and 100).")
+            self.response.write(" but you guessed '%s' which is not a valid guess (Reel number between 0 and 100)." % number)
             self.response.write('<p><a href="/">Back</a> <p>')
             self.response.write('</body></html>')
 
