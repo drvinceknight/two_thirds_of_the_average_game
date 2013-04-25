@@ -31,5 +31,12 @@ class MainPage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template(html_file)
         self.response.write(template.render(template_values))
 
-app = webapp2.WSGIApplication([('/', MainPage)],
+
+class GuessedPage(webapp2.RequestHandler):
+
+    def post(self):
+        self.response("<html><body>Thanks for guessing</body></html>")
+
+
+app = webapp2.WSGIApplication([('/', MainPage), ('/guessed', GuessedPage)],
                               debug=True)
