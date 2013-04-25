@@ -4,31 +4,6 @@ import webapp2
 from google.appengine.api import users
 
 
-LOGGED_IN_PAGE_HTML = """\
-<html>
-  <body>
-    <form action="/guess" method="post">
-        Guess: <input name="guess"><br>
-        Name: <input name="name" value="Anonymous"><br>
-        <input type="submit" value="Submit form">
-    </form>
-    <a href=%s>Logout</a>
-  </body>
-</html>
-"""
-
-LOGGED_OUT_PAGE_HTML = """\
-<html>
-  <body>
-    <form action="/guess" method="post">
-        Guess: <input name="guess"><br>
-        Name: <input name="name" value="Anonymous"><br>
-        <input type="submit" value="Submit form">
-    </form>
-  </body>
-</html>
-"""
-
 MAIN_PAGE_HTML = """\
 <html>
   <body>
@@ -37,10 +12,18 @@ MAIN_PAGE_HTML = """\
         Name: <input name="name" value="Anonymous"><br>
         <input type="submit" value="Submit form">
     </form>
+    <a href=%s>%s</a>
   </body>
 </html>
 """
 
+LOGGED_OUT_PAGE_HTML = """\
+<html>
+  <body>
+    <a href=%s>%s</a>
+  </body>
+</html>
+"""
 
 class MainPage(webapp2.RequestHandler):
 
@@ -48,10 +31,14 @@ class MainPage(webapp2.RequestHandler):
         user = users.get_current_user()
 
         if user:
-            self.response.write(LOGGED_IN_PAGE_HTML % users.create_logout_url(self.request.uri))
-
+            url = users.create_logout_url(self.request.uri)
+            url_linktext = 'Logout'
+            page = MAIN_PAGE_HTML
         else:
-            self.response.write(LOGGED_OUT_PAGE_HTML)
+            url = users.create_login_url(self.request.uri)
+            url_linktext = 'Login'
+            page = LOGGED_OUT_PAGE_HTML
+        self.response.write(page % (url, url_linktext))
 
 
 class Guessed(webapp2.RequestHandler):
@@ -61,6 +48,7 @@ class Guessed(webapp2.RequestHandler):
         self.response.write(cgi.escape(self.request.get('name')))
         self.response.write(' you guessed: ')
         self.response.write(cgi.escape(self.request.get('guess')))
+        self.response.write('<p><a href="/">Back</a> <p>')
         self.response.write('</body></html>')
 
 
