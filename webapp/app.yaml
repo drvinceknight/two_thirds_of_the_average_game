@@ -10,3 +10,6 @@ handlers:
 
 - url: /.*
   script: twothirdsgame.app
+
+builtins:
+    - remote_api: on
