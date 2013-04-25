@@ -1,42 +1,69 @@
+import cgi
 import webapp2
-import jinja2
-import os
 
 from google.appengine.api import users
 
-JINJA_ENVIRONMENT = jinja2.Environment(
-                                        loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+LOGGED_IN_PAGE_HTML = """\
+<html>
+  <body>
+    <form action="/guess" method="post">
+        Guess: <input name="guess"><br>
+        Name: <input name="name" value="Anonymous"><br>
+        <input type="submit" value="Submit form">
+    </form>
+    <a href=%s>Logout</a>
+  </body>
+</html>
+"""
+
+LOGGED_OUT_PAGE_HTML = """\
+<html>
+  <body>
+    <form action="/guess" method="post">
+        Guess: <input name="guess"><br>
+        Name: <input name="name" value="Anonymous"><br>
+        <input type="submit" value="Submit form">
+    </form>
+  </body>
+</html>
+"""
+
+MAIN_PAGE_HTML = """\
+<html>
+  <body>
+    <form action="/guess" method="post">
+        Guess: <input name="guess"><br>
+        Name: <input name="name" value="Anonymous"><br>
+        <input type="submit" value="Submit form">
+    </form>
+  </body>
+</html>
+"""
 
 
 class MainPage(webapp2.RequestHandler):
 
     def get(self):
         user = users.get_current_user()
-        #self.response.headers['Content-Type'] = 'text/plain'
-        #self.response.write('Hello, webapp2 World!')
+
         if user:
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout'
-            html_file = 'index.html'
+            self.response.write(LOGGED_IN_PAGE_HTML % users.create_logout_url(self.request.uri))
+
         else:
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login'
-            html_file = 'login.html'
-
-        template_values = {
-            'url': url,
-            'url_linktext': url_linktext
-        }
-
-        template = JINJA_ENVIRONMENT.get_template(html_file)
-        self.response.write(template.render(template_values))
+            self.response.write(LOGGED_OUT_PAGE_HTML)
 
 
-class GuessedPage(webapp2.RequestHandler):
+class Guessed(webapp2.RequestHandler):
 
     def post(self):
-        self.response("<html><body>Thanks for guessing</body></html>")
+        self.response.write('<html><body>Thanks ')
+        self.response.write(cgi.escape(self.request.get('name')))
+        self.response.write(' you guessed: ')
+        self.response.write(cgi.escape(self.request.get('guess')))
+        self.response.write('</body></html>')
 
 
-app = webapp2.WSGIApplication([('/', MainPage), ('/guessed', GuessedPage)],
+app = webapp2.WSGIApplication([('/', MainPage),
+                              ('/guess', Guessed)],
                               debug=True)
