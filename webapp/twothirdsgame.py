@@ -122,7 +122,7 @@ class Guessed(webapp2.RequestHandler):
 
             if num_prev_guesses > 0:
                 self.response.write(' this time')
-            self.response.write(' and this has been added to the database and will be used to evaluate the winning strategy.')
+            self.response.write('. This has been added to the database and will be used to evaluate the winning strategy.')
             self.response.write('<p><a href="/">Back</a> <p>')
             self.response.write('</body></html>')
 
