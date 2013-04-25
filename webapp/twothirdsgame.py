@@ -110,19 +110,20 @@ class Guessed(webapp2.RequestHandler):
             self.response.write('<html><body>Thanks ')
             self.response.write(cgi.escape(self.request.get('name')))
             self.response.write('.')
+            self.response.write('<ul>')
 
             Q = [q for q in Q]
             num_prev_guesses = len(Q)
 
-            if num_prev_guesses > 0:
-                self.response.write(' This is your guess number: %s. Your previous guess was %s.' % (num_prev_guesses + 1, Q[-1].number))
+            if num_prev_guesses > 1:
+                self.response.write('<li>This is your guess number: %s. Your previous guess was %s.</li>' % (num_prev_guesses, Q[-2].number))
 
-            self.response.write(' You guessed ')
+            self.response.write('<li>You guessed ')
             self.response.write(cgi.escape(self.request.get('guess')))
 
             if num_prev_guesses > 0:
-                self.response.write(' this time')
-            self.response.write('. This has been added to the database and will be used to evaluate the winning strategy.')
+                self.response.write(' this time. </li>')
+            self.response.write('<li>This has been added to the database and will be used to evaluate the winning strategy.</li>')
             self.response.write('<p><a href="/">Back</a> <p>')
             self.response.write('</body></html>')
 
