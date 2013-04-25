@@ -130,7 +130,7 @@ class Guessed(webapp2.RequestHandler):
         else:
             self.response.write("I'm sorry ")
             self.response.write(cgi.escape(self.request.get('name')))
-            self.response.write(" but you guessed '%s' which is not a valid guess (Reel number between 0 and 100)." % number)
+            self.response.write(" but you guessed '%s' which is not a valid guess (Real number between 0 and 100)." % number)
             self.response.write('<p><a href="/">Back</a> <p>')
             self.response.write('</body></html>')
 
