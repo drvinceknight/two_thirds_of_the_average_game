@@ -22,7 +22,7 @@ MAIN_PAGE_HTML = """\
     <p>I'd very much appreciate you having a go and playing along :)</p>
     <p>If you'd like some more information about this page and/or me:
         <ul>
-        <li>A blog post about this online game can be found <a href="">here</a></li>
+        <li>A blog post about this online game can be found <a href="http://drvinceknight.blogspot.co.uk/2013/04/invitation-to-play-game.html">here</a></li>
         <li>A github repo with all the code for this website can be found <a href="https://github.com/drvinceknight/two_thirds_of_the_average_game">here</a></li>
         <li>My personal webpage can be found here: <a href="http://www.vincent-knight.com/">www.vincent-knight.com</a></li>
         <li>I'm quite active on G+ and you can find my profile <a href="https://plus.google.com/110464871801965858778/posts">here</a> </li>
@@ -31,7 +31,7 @@ MAIN_PAGE_HTML = """\
 """
 
 LOGGED_IN_PAGE_HTML = """\
-    <p><b>If you are on this page it is because you are currently logged in via your google user name. I am using this to ensure that every one who chooses to participate will have their last guess only counted (there is an option to logout below).</b></p>
+    <p><b>If you are on this page it is because you are currently logged in via your google user name. I am using this to ensure that every one who chooses to participate will have their last guess only counted (there is an option to logout below but I only get your username and won't do anything 'bad' with it: I wouldn't know how).</b></p>
 
     <p> Please enter a guess below. If you enter a url (G+ page, twitter page, website...) I'll be sure to include it when I disclose the winner(s) on my <a href="http://drvinceknight.blogspot.co.uk/">blog page</a> :)</p>
 
@@ -47,7 +47,7 @@ LOGGED_IN_PAGE_HTML = """\
 """
 
 LOGGED_OUT_PAGE_HTML = """\
-    <p><b>If you are on this page it is because you are currently not logged in. To ensure that the game is played fairly and no one has anymore information than any other player, please log in using your google account.</b></p>
+        <p><b>If you are on this page it is because you are currently not logged in. To ensure that the game is played fairly and no one has anymore information than any other player, please log in using your google account (I only get your username and won't do anything 'bad' with it: I wouldn't know how).</b></p>
     <a href=%s>%s</a>
   </body>
 </html>
