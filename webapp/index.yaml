@@ -20,3 +20,8 @@ indexes:
   - name: author
   - name: date
     direction: desc
+
+- kind: Guess
+  ancestor: yes
+  properties:
+  - name: date
