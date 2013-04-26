@@ -27,7 +27,6 @@ LOGGED_IN_PAGE_HTML = """\
 
     <form action="/guess" method="post">
         Guess: <input name="guess"><br>
-        Name: <input name="name" value="Anonymous"><br>
         url: <input name="personal_url"><br>
         <input type="submit" value="Submit form">
     </form>
@@ -48,15 +47,14 @@ LOGGED_OUT_PAGE_HTML = """\
 class Guess(db.Model):
     """Models a guess"""
     author = db.StringProperty()
-    name = db.StringProperty()
     number = db.StringProperty()
     personal_url = db.StringProperty()
     date = db.DateTimeProperty(auto_now_add=True)
 
 
-def guess_key(name=None):
+def guess_key(author=None):
     """Constructs a datastore key for a Guess entity with name"""
-    return db.Key.from_path('Guessed', name or 'Anonymous')
+    return db.Key.from_path('Guessed', author or 'Anonymous')
 
 
 def is_valid_guess(number):
@@ -90,15 +88,14 @@ class Guessed(webapp2.RequestHandler):
 
     def post(self):
 
-        name = self.request.get('name')
         number = self.request.get('guess')
         personal_url = self.request.get('personal_url')
+        author = users.get_current_user().nickname()
 
         if is_valid_guess(number):
 
-            guess = Guess(parent=guess_key(name))
-            guess.author = users.get_current_user().nickname()
-            guess.name = name
+            guess = Guess(parent=guess_key(author))
+            guess.author = author
             guess.number = number
             guess.personal_url = personal_url
             guess.put()
@@ -108,7 +105,7 @@ class Guessed(webapp2.RequestHandler):
             Q.order("date")
 
             self.response.write('<html><body>Thanks ')
-            self.response.write(cgi.escape(self.request.get('name')))
+            self.response.write(author)
             self.response.write('.')
             self.response.write('<ul>')
 
@@ -129,7 +126,7 @@ class Guessed(webapp2.RequestHandler):
 
         else:
             self.response.write("I'm sorry ")
-            self.response.write(cgi.escape(self.request.get('name')))
+            self.response.write(author)
             self.response.write(" but you guessed '%s' which is not a valid guess (Real number between 0 and 100)." % number)
             self.response.write('<p><a href="/">Back</a> <p>')
             self.response.write('</body></html>')
