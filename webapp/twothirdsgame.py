@@ -18,6 +18,8 @@ MAIN_PAGE_HTML = """\
     <p>It's a game to get participants to understand concepts of dominated strategies:</p>
 
     <img src="/images/Rationalise_two_thirds_of_average_game.gif" width=500>
+
+    <p> I'd very much appreciate you having a go and playing along :)</p>
 """
 
 LOGGED_IN_PAGE_HTML = """\
@@ -114,7 +116,7 @@ class Guessed(webapp2.RequestHandler):
             num_guesses = len(Q)
 
             if num_guesses > 1:
-                self.response.write('<li>This is your guess number: %s. Your previous guess was %s.</li>' % (num_guesses, Q[-2].number))
+                self.response.write('<li>This is your guess number: %s. Your previous guess was %s (which will now be ignored).</li>' % (num_guesses, Q[-2].number))
 
             self.response.write('<li>You guessed ')
             self.response.write(cgi.escape(self.request.get('guess')))
