@@ -65,3 +65,7 @@ if "raw_data.csv" in listdir("./"):
 
 else:
     print "No raw_data.csv file found."
+
+run_analysis = raw_input("Run analysis script? (y/n) ")
+if run_analysis == "y":
+    system("./analyse_data_from_app_engine.py")
