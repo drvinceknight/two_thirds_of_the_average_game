@@ -19,7 +19,15 @@ MAIN_PAGE_HTML = """\
 
     <img src="/images/Rationalise_two_thirds_of_average_game.gif" width=500>
 
-    <p> I'd very much appreciate you having a go and playing along :)</p>
+    <p>I'd very much appreciate you having a go and playing along :)</p>
+    <p>If you'd like some more information about this page and/or me:
+        <ul>
+        <li>A blog post about this online game can be found <a href="">here</a></li>
+        <li>A github repo with all the code for this website can be found <a href="https://github.com/drvinceknight/two_thirds_of_the_average_game">here</a></li>
+        <li>My personal webpage can be found here: <a href="http://www.vincent-knight.com/">www.vincent-knight.com</a></li>
+        <li>I'm quite active on G+ and you can find my profile <a href="https://plus.google.com/110464871801965858778/posts">here</a> </li>
+        </ul>
+    </p>
 """
 
 LOGGED_IN_PAGE_HTML = """\

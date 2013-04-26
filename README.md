@@ -6,6 +6,12 @@ Here's the definition of the game from the [wiki page](http://en.wikipedia.org/w
 
 > "In game theory, Guess 2/3 of the average is a game where several people guess what 2/3 of the average of their guesses will be, and where the numbers are restricted to the real numbers between 0 and 100, inclusive. The winner is the one closest to the 2/3 average."
 
+I run this game during outreach events but have also recently put up an online version of the game: [http://twothirdsoftheaveragegame.appspot.com/](http://twothirdsoftheaveragegame.appspot.com/).
+
+This was done using [google app engine](https://developers.google.com/appengine/). All the code for that website and code used to analysis the results can be found in the `webapp` and `Data_from_webapp` directories.
+
+# As an outreach event
+
 I run this game once without any instruction. I just explain the rules and let them fill in the form in front of them (contained in this repo).
 
 I then bring up slides discussing how iterated elimination of weakly dominated strategies leaves the "rational" strategy to be that everyone guesses 0.
