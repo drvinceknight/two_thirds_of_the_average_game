@@ -28,12 +28,12 @@ def analyse_given_data_set(data):
 
     # Plot histograms of guesses using matplotlib
     plt.figure()
-    plt.hist([e[1] for e in data], bins=20, label='First Guess', normed='True')
+    plt.hist([e[1] for e in data], bins=20, label='Guess', normed='True')
     plt.title("Two thirds of the average game ($N=%s$)." % number_of_players)
     plt.xlabel("Guess")
     plt.ylabel("Probability")
     max_y = plt.ylim()[1]
-    plt.vlines(winning_first_guess, 0, max_y, label='Winning First Guess: %s' % winning_first_guess, color='blue')
+    plt.vlines(winning_first_guess, 0, max_y, label='Winning Guess: %s' % winning_first_guess, color='blue')
     plt.ylim(0, max_y)
     plt.xlim(0, 100)
     plt.legend()
