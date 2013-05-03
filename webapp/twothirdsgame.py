@@ -23,7 +23,7 @@ MAIN_PAGE_HTML = """\
     <p>I plan to write a blog post whenever I have about 200 players play (I'll refresh the data store every 200 players).</p>
     <p>If you'd like some more information about this page and/or me:
         <ul>
-        <li>A blog post about the time this game was played last<a href="http://goo.gl/DFJxe">here</a></li>
+        <li>A blog post about the time this game was played last <a href="http://goo.gl/DFJxe">here</a></li>
         <li>A github repo with all the code for this website can be found <a href="https://github.com/drvinceknight/two_thirds_of_the_average_game">here</a></li>
         <li>My personal webpage can be found here: <a href="http://www.vincent-knight.com/">www.vincent-knight.com</a></li>
         <li>I'm quite active on G+ and you can find my profile <a href="https://plus.google.com/110464871801965858778/posts">here</a> </li>
